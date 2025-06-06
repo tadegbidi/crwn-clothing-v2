@@ -2,12 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
-import {
-    getFirestore,
-    doc,
-    getDoc,
-    setDoc
-} from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -41,10 +36,10 @@ export const db = getFirestore();
 export const createUserDocumentFromAuth = async (userAuth) => {
     const userDocRef = doc(db, 'users', userAuth.uid);
 
-    console.log(userDocRef);
+    // console.log(userDocRef);
 
     const userSnapshopt = await getDoc(userDocRef);
-    console.log(userSnapshopt);
+    // console.log(userSnapshopt);
 
     // if user data does not exist
     // create / set the document with the data from userAuth in my collection
@@ -72,3 +67,9 @@ export const createUserDocumentFromAuth = async (userAuth) => {
     return userDocRef;
 
 }
+
+// export const logGoogleUser = async() => {
+//         const { user } = await signInWithGooglePopup();
+
+//         const userDocRef = await createUserDocumentFromAuth(user);
+//     }
