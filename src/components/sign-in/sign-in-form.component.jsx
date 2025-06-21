@@ -3,11 +3,11 @@ import { useState } from "react";
 
 import FormInput from "../form-input/form-input.component";
 
-import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
+import { signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
 
 import Button from "../button/button.component";
 
-import './sign-in.styles.scss';
+import './sign-in-form.styles.scss';
 
 const defaultSignIn = {
     email: '',
@@ -25,9 +25,7 @@ const SignInForm = () => {
     };
 
     const signInWithGoogle = async() => {
-        const { user } = await signInWithGooglePopup();
-
-        await createUserDocumentFromAuth(user);
+        await signInWithGooglePopup();
     };
 
     const handleSubmitForm = async (event) => {
@@ -35,9 +33,7 @@ const SignInForm = () => {
 
         try {
 
-            const response = await signInAuthUserWithEmailAndPassword(email, password);
-
-            console.log(response);
+            const { user } = await signInAuthUserWithEmailAndPassword(email, password);
 
             resetSignInInfos();
             
@@ -62,7 +58,7 @@ const SignInForm = () => {
     const handleChange = (event) => {
         const {name, value} = event.target;
 
-        setSignInInfos({...defaultSignIn, [name]: value});
+        setSignInInfos({...signInInfos, [name]: value});
     };
 
     return (
