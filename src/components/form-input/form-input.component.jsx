@@ -1,15 +1,15 @@
 
-import './form-input-styes.scss';
+import { Group, Input, FormInputLabel } from './form-input-styes.jsx';
 
 const FormInput = ({label, ...otherProps}) => {
 
     return (
-        <div className="group">
-        <input className="form-input" {...otherProps} />
+        <Group>
+        <Input {...otherProps} />
         { label && (
-         <label className={`${otherProps.value.length ? 'shrink' : ''} form-input-label`}>{label}</label>
+         <FormInputLabel shrink={otherProps.value.length}>{label}</FormInputLabel>
         )}
-        </div>
+        </Group>
     )
 }
 
