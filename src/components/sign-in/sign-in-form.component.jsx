@@ -7,7 +7,7 @@ import { signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from '../..
 
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
-import { SignInContainer, ButtonsContainer } from './sign-in-form.styles.jsx';
+import { SignInContainer, ButtonsContainer } from './sign-in-form.styles';
 
 const defaultSignIn = {
     email: '',
@@ -32,8 +32,7 @@ const SignInForm = () => {
         event.preventDefault();
 
         try {
-
-            const { user } = await signInAuthUserWithEmailAndPassword(email, password);
+            await signInAuthUserWithEmailAndPassword(email, password);
 
             resetSignInInfos();
             
